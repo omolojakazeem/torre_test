@@ -14,9 +14,9 @@ body{
 
 .center_wrapper{
   display: flex;
-  max-width: 560px;
+  max-width: 700px;
   width: 100%;
-  height: 350px;
+  height: auto;
   position: absolute;
   top: 50%;
   left:50%;
@@ -26,7 +26,7 @@ body{
 .center_wrapper .left,
 .center_wrapper .right{
   width: 50%;
-  height: 100%;
+  height: auto;
   padding: 30px;
 }
 
@@ -88,18 +88,21 @@ body{
   background: #ecebeb;
 }
 
-.center_wrapper .right .btn{
+.center_wrapper .right .submit_div{
   margin-top: 20px;
-  background: #494f57;
+}
+
+.center_wrapper .right .submit_div .submit_button{
+  display: block;
+  width: 100%;
+  border: none;
+  color: #fff;
   padding: 10px;
+  background-color: #494F57;
+  font-size: 16px;
+  cursor: pointer;
   text-align: center;
   text-transform: uppercase;
   letter-spacing: 3px;
   font-weight: bold;
-}
-
-.center_wrapper .right .btn a{
-  color: #fff;
-  display: block;
-  font-size: 14px;
 }

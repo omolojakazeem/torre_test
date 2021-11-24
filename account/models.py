@@ -1,3 +1,4 @@
+from django.conf import settings
 from django.utils import timezone
 from cloudinary.models import CloudinaryField
 from django.contrib.auth.base_user import AbstractBaseUser
@@ -29,6 +30,8 @@ class Skill(models.Model):
         self.skill_slug = slugify(self.title)
         super(Skill, self).save(*args, **kwargs)
 
+    def __str__(self):
+        return self.title
 
 class UserModel(AbstractBaseUser, PermissionsMixin):
     """
@@ -44,7 +47,7 @@ class UserModel(AbstractBaseUser, PermissionsMixin):
     first_name = models.CharField(max_length=25, null=True, blank=True)
     last_name = models.CharField(max_length=25, null=True, blank=True)
     middle_name = models.CharField(max_length=25, null=True, blank=True)
-    image = CloudinaryField('image')
+    image = CloudinaryField()
     is_staff = models.BooleanField(default=False)
     is_active = models.BooleanField(default=True)
     date_joined = models.DateTimeField(auto_now_add=True)
@@ -57,6 +60,9 @@ class UserModel(AbstractBaseUser, PermissionsMixin):
     def save(self, *args, **kwargs):
         self.uiid = get_my_uiid(32, UID_ENCODER)
         super(UserModel, self).save(*args, **kwargs)
+
+    def get_image_url(self):
+        return '{}{}'.format(settings.CLOUDINARY_ROOT_URL, self.image)
 
     @property
     def get_full_name(self):

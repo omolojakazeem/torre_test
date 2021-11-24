@@ -31,7 +31,7 @@ INSTALLED_APPS = [
     'cloudinary',
     # 'phone_field',
     'debug_toolbar',
-    # 'widget_tweaks',
+    'widget_tweaks',
 ]
 
 AUTH_USER_MODEL = 'account.UserModel'
@@ -117,6 +117,8 @@ cloudinary.config(
     api_key=os.getenv('CLOUDINARY_API_KEY'),
     api_secret=os.getenv('CLOUDINARY_API_SECRET')
 )
+
+CLOUDINARY_ROOT_URL = 'https://res.cloudinary.com/psm/'
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 django_heroku.settings(locals())

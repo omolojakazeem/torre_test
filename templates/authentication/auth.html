@@ -1,4 +1,5 @@
 {% load static %}
+{% load widget_tweaks %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -21,31 +22,60 @@
                 <li class="login_li">login</li>
               </ul>
             </div>
+            {% if messages %}
+                {% for message in messages %}
+                    <button class="btn btn-block notifications btn-{{message.tags}}" data-type="{{message.tags}}" data-from="bottom" data-align="right">
+                        {{message}}
+                    </button>
+                {% endfor %}
+              {% endif %}
             <div class="register">
+                <form action="" method="post">
+                    {% csrf_token %}
+                    <div class="input_field">
+                        {% render_field register_form.first_name placeholder="First name" class="input" %}
+                    </div>
+                    <div class="input_field">
+                        {% render_field register_form.middle_name placeholder="Middle name" class="input" %}
+                    </div>
+                    <div class="input_field">
+                        {% render_field register_form.last_name placeholder="Last name" class="input" %}
+                    </div>
+                    <div class="input_field">
+                        {% render_field register_form.email placeholder="E-mail" class="input" %}
+                    </div>
+                    <div class="input_field">
+                        {% render_field register_form.password1 placeholder="Password" class="input" %}
+                    </div>
+                    <div class="input_field">
+                        {% render_field register_form.password2 placeholder="Confirm Password" class="input" %}
+                    </div>
+                    <input type="hidden" name="register">
+                    <div class="submit_div">
+                        <button class="submit_button" type="submit" >Register</button>
+                    </div>
 
-                <div class="input_field">
-                    <input type="text" placeholder="E-mail" class="input">
-                </div>
-                <div class="input_field">
-                    <input type="password" placeholder="Password" class="input">
-                </div>
-                <div class="input_field">
-                    <input type="password2" placeholder="Confirm Password" class="input">
-                </div>
-                <div class="btn">
+                <!--<div class="btn" >
                     <a href="#">Register</a>
-                </div>
+                </div> -->
+                </form>
+
             </div>
             <div class="login">
-                <div class="input_field">
-                    <input type="text" placeholder="E-mail" class="input">
-                </div>
-                <div class="input_field">
-                    <input type="password" placeholder="Password" class="input">
-                </div>
-                <div class="btn">
-                    <a href="#">Login</a>
-                </div>
+                <form action="" method="post">
+                    {% csrf_token %}
+                    <div class="input_field">
+                        {% render_field login_form.email placeholder="E-mail" class="input" %}
+                    </div>
+                    <div class="input_field">
+                        {% render_field login_form.password placeholder="Password" class="input" %}
+                    </div>
+                    <div class="submit_div">
+                        <input type="hidden" name="login">
+                        <button class="submit_button" type="submit" >Login</button>
+                    </div>
+                </form>
+
             </div>
         </div>
     </div>

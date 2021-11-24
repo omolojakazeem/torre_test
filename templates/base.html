@@ -1,14 +1,36 @@
 {% load static %}
+{% load cloudinary %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <title>{% block title %} {% endblock %}</title>
     <link rel="stylesheet" href="/static/assets/css/mystyle.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 </head>
 <body>
+<div class="header">
+  <h1>Chania</h1>
+</div>
+<div class="row">
+  <div class="col-6 col-s-6 left-side">
+    {% block content1 %}
 
-<script src="/static/assets/js/myscript.js"></script>
+    {% endblock %}
+  </div>
+
+  <div class="col-6 col-s-6 right-side">
+      {% block content2 %}
+
+      {% endblock %}
+  </div>
+</div>
+
+<div class="footer">
+  <p>Resize the browser window to see how the content respond to the resizing.</p>
+</div>
+
+<script src="/static/assets/js/myscripts.js"></script>
 {% block scripts %}
 
 {% endblock %}
