@@ -12,7 +12,7 @@ class SkillCreateSerializer(serializers.ModelSerializer):
 class SkillListSerializer(serializers.ModelSerializer):
     class Meta:
         model = models.Skill
-        fields = ['id', 'title', 'skill_slug']
+        fields = ['id', 'title', 'master', 'proficient', 'learning','future','skill_slug']
 
 
 class UserSerializer(serializers.ModelSerializer):

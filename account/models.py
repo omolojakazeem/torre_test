@@ -8,7 +8,12 @@ from django.utils.crypto import get_random_string
 from django.utils.text import slugify
 
 from .customManager import CustomUserManager
-
+PROFICIENCY = (
+    ('MASTER', 'MASTER'),
+    ('PROFICIENT', 'PROFICIENT'),
+    ('LEARNING', 'LEARNING'),
+    ('LEARN IN FUTURE', 'LEARN IN FUTURE'),
+)
 now = str(timezone.now())
 chars = 'abcdefghijklmnopqrstuvwxyz0123456789'
 UID_ENCODER = chars + now
@@ -24,6 +29,10 @@ class Skill(models.Model):
         It has a many-to-many relationship to the UserModel
     """
     title = models.CharField(max_length=255)
+    master = models.BooleanField(default=False)
+    learning = models.BooleanField(default=False)
+    proficient = models.BooleanField(default=True)
+    future = models.BooleanField(default=False)
     skill_slug = models.SlugField(null=True, blank=True)
 
     def save(self, *args, **kwargs):
@@ -31,7 +40,8 @@ class Skill(models.Model):
         super(Skill, self).save(*args, **kwargs)
 
     def __str__(self):
-        return self.title
+        return f"{self.title}"
+
 
 class UserModel(AbstractBaseUser, PermissionsMixin):
     """

@@ -16,7 +16,7 @@ class Authentication(View):
 
     def get(self, request):
         if request.user.is_authenticated:
-            return redirect('auth:dashboard', request.user.uiid)
+            return redirect('auth:dashboard', request.user.pk)
 
         register_form = forms.UserRegistrationForm()
         login_form = forms.UserLoginForm()
@@ -41,7 +41,7 @@ class Authentication(View):
                 my_user = authenticate(request, email=email, password=password)
                 login(request, my_user)
                 messages.add_message(request, messages.SUCCESS, "Login Successful")
-                return redirect('auth:dashboard', request.user.uiid, )
+                return redirect('auth:dashboard', request.user.pk, )
 
             else:
                 if register_form.errors:
@@ -60,7 +60,7 @@ class Authentication(View):
 
                 if my_user is not None:
                     login(request, my_user)
-                    return redirect('auth:dashboard', request.user.uiid)
+                    return redirect('auth:dashboard', request.user.pk)
                 else:
                     messages.add_message(
                         request, messages.INFO,
@@ -77,7 +77,7 @@ class Authentication(View):
 class Dashboard(View):
     template = 'index.html'
 
-    def get(self, request, uiid):
+    def get(self, request, pk):
         context = {
 
         }
