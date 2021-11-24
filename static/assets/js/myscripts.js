@@ -34,15 +34,14 @@ function appendUser(user){
     related_user_holder.append(Mustache.render(related_user_html, user))
 }
 function myFunction(title) {
-event.preventDefault();
-    console.log(title);
      $.ajax({
         type:'GET',
         url: '/account/related/'+ title,
         success: function(users){
             $.each(users, function(i, user){
                 appendUser(user)
-            })
+            }),
+            document.getElementById(title).disabled = true;
         }
     });
 }
