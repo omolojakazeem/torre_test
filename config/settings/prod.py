@@ -8,12 +8,9 @@ if my_debug == "False":
 else:
     DEBUG = True
 
-ALLOWED_HOSTS = ['officebook-staging.herokuapp.com', 'office-book.herokuapp.com']
-SERVER_NAME = ALLOWED_HOSTS[1]
+ALLOWED_HOSTS = ['kazeem-torre-test.herokuapp.com',]
+
 DATABASE_URL = os.getenv('DATABASE_URL')
 
 SECRET_KEY = os.getenv('SECRET_KEY')
 
-
-SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
-SECURE_SSL_REDIRECT = True
