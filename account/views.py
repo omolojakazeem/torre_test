@@ -85,6 +85,9 @@ class Dashboard(View):
 
 
 class DashboardUserApi(APIView):
+    """
+        This End point fetches the a particulr user's details. It taked the pk as parameter
+    """
     def get(self, request, pk):
         user = models.UserModel.objects.get(pk=pk)
         serialized_user = serializers.UserSerializer(user)
@@ -92,6 +95,9 @@ class DashboardUserApi(APIView):
 
 
 class RelatedUserApi(APIView):
+    """
+        This End point fetches the users with related skill. Parameter is skill and it is case sensitive
+    """
     def get(self, request, skill):
         users = models.UserModel.objects.filter(skills__title=skill).exclude(pk=request.user.pk).distinct()
         serialized_user = serializers.AllUserSerializer(users, many=True)
@@ -99,6 +105,9 @@ class RelatedUserApi(APIView):
 
 
 class AllUserApi(APIView):
+    """
+        This End point fetches all users present
+    """
     def get(self, request):
         users = models.UserModel.objects.all()
         serialized_users = serializers.AllUserSerializer(users, many=True)

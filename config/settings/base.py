@@ -29,10 +29,14 @@ INSTALLED_APPS = [
     # 3rd Party apps
     'rest_framework',
     'cloudinary',
-    # 'phone_field',
+    'drf_yasg',
     'debug_toolbar',
     'widget_tweaks',
 ]
+
+REST_FRAMEWORK = {
+  'DEFAULT_SCHEMA_CLASS': 'rest_framework.schemas.coreapi.AutoSchema'
+}
 
 AUTH_USER_MODEL = 'account.UserModel'
 
