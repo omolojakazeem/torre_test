@@ -24,7 +24,7 @@ INSTALLED_APPS = [
     'django.contrib.humanize',
 
     # Django Apps
-    # 'account',
+    'account',
 
     # 3rd Party apps
     'rest_framework',
