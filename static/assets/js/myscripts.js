@@ -36,7 +36,7 @@ function appendUser(user){
 function myFunction(title) {
      $.ajax({
         type:'GET',
-        url: '/account/related/'+ title,
+        url: '/related/'+ title,
         success: function(users){
             $.each(users, function(i, user){
                 appendUser(user)
@@ -75,7 +75,7 @@ function renderFutureSkills(user){
 $(function(){
     $.ajax({
         type:'GET',
-        url: '/account/mydetail/'+ id,
+        url: '/mydetail/'+ id,
         success: function(data){
             renderImage(data);
             renderBio(data);
