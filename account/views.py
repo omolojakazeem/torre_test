@@ -91,6 +91,13 @@ class DashboardUserApi(APIView):
         return Response(serialized_user.data, status.HTTP_200_OK)
 
 
+class RelatedUserApi(APIView):
+    def get(self, request, skill):
+        users = models.UserModel.objects.filter(skills__title=skill).exclude(pk=request.user.pk).distinct()
+        serialized_user = serializers.AllUserSerializer(users, many=True)
+        return Response(serialized_user.data, status.HTTP_200_OK)
+
+
 class AllUserApi(APIView):
     def get(self, request):
         users = models.UserModel.objects.all()

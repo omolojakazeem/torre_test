@@ -57,6 +57,7 @@ class UserModel(AbstractBaseUser, PermissionsMixin):
     first_name = models.CharField(max_length=25, null=True, blank=True)
     last_name = models.CharField(max_length=25, null=True, blank=True)
     middle_name = models.CharField(max_length=25, null=True, blank=True)
+    current_role = models.CharField(max_length=25, default="Software Developer")
     image = CloudinaryField()
     is_staff = models.BooleanField(default=False)
     is_active = models.BooleanField(default=True)
