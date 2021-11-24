@@ -1,5 +1,4 @@
-from time import timezone
-
+from django.utils import timezone
 from cloudinary.models import CloudinaryField
 from django.contrib.auth.base_user import AbstractBaseUser
 from django.contrib.auth.models import PermissionsMixin
